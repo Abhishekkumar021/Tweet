@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Delete Tweet{% endblock %}
+    </head>
+<body>
+    {% block content %}
+    
+    <h1 class='text-center'>Welcome to Tweet Review</h1>
+
+    <h2>Are you sure that you want to delete the tweet</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'tweet_list' %}" class="btn btn-primary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+    {% endblock %}
+</body>
+</html>

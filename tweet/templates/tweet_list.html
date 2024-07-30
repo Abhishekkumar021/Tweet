@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}All Tweets | Sabhi Tweets{% endblock %}
+    </head>
+<body>
+    {% block content %}
+    
+    <h1 class='text-center'>Welcome to Tweet Review</h1>
+
+    <a href="{% url 'create_tweet' %}" class="btn btn-primary mb-4">Create a Tweet</a>
+
+    {% for tweet in tweets %}
+    
+    <div class="card" style="width: 18rem;">
+        <img src="{{tweet.photo.url}}" class="card-img-top" alt="{{tweet.user.username}}">
+        <div class="card-body">
+          <h5 class="card-title">{{tweet.user.username}}</h5>
+          <p class="card-text">{{tweet.text}}</p>
+          {% if  tweet.user == user %}
+          <a href="{% url 'edit_tweet' tweet.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete_tweet' tweet.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>
